@@ -1,10 +1,10 @@
-export function createBoard(rows, cols, mines) {
+export function createBoard(rows, cols, mines, safeCell = null) {
   const board = Array.from({ length: rows }, () =>
     Array.from({ length: cols }, () => ({
       isMine: false,
       isOpen: false,
       neighborMines: 0,
-    }))
+    })),
   );
 
   let placed = 0;
@@ -12,6 +12,11 @@ export function createBoard(rows, cols, mines) {
   while (placed < mines) {
     const r = Math.floor(Math.random() * rows);
     const c = Math.floor(Math.random() * cols);
+
+    // Evita colocar mina na célula protegida (usada no primeiro clique).
+    const isSafeCell = safeCell && safeCell.row === r && safeCell.col === c;
+
+    if (isSafeCell) continue;
 
     if (!board[r][c].isMine) {
       board[r][c].isMine = true;
@@ -27,16 +32,19 @@ export function createBoard(rows, cols, mines) {
 
       let count = 0;
 
-      dirs.forEach(dx => {
-        dirs.forEach(dy => {
+      dirs.forEach((dx) => {
+        dirs.forEach((dy) => {
           const nr = r + dx;
           const nc = c + dy;
 
           if (
-            nr >= 0 && nr < rows &&
-            nc >= 0 && nc < cols &&
+            nr >= 0 &&
+            nr < rows &&
+            nc >= 0 &&
+            nc < cols &&
             board[nr][nc].isMine
-          ) count++;
+          )
+            count++;
         });
       });
 

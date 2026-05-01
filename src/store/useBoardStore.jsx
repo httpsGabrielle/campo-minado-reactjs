@@ -38,9 +38,24 @@ export const useBoardStore = create((set) => ({
     }),
 
   openCell: (row, col) =>
-    set((state) => ({
-      board: openCell(state.board, row, col),
-    })),
+    set((state) => {
+      // Se nenhuma célula está aberta ainda, este é o primeiro movimento.
+      const isFirstMove = !state.board.some((line) =>
+        line.some((cell) => cell.isOpen),
+      );
+
+      let board = state.board;
+
+      // Se o primeiro clique caiu numa mina, recria o tabuleiro
+      // garantindo que a posição clicada seja segura.
+      if (isFirstMove && board[row][col].isMine) {
+        board = createBoard(state.rows, state.cols, state.mines, { row, col });
+      }
+
+      return {
+        board: openCell(board, row, col),
+      };
+    }),
 
   toggleFlag: (row, col) =>
     set((state) => ({
