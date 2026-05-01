@@ -1,5 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 
+import Layout from "../layout";
+
 import Minesweeper from "../pages/Minesweeper";
 
 //------------------------------------------------------------------------------
@@ -7,6 +9,7 @@ import Minesweeper from "../pages/Minesweeper";
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Layout />,
     children: [
       { index: true, element: <Navigate to="minesweeper" replace /> },
       {
