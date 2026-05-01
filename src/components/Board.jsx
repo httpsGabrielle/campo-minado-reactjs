@@ -9,7 +9,12 @@ export default function Board() {
 
   return (
     <>
-      <Stack spacing={0} sx={{ width: "fit-content" }}>
+      <Stack
+        spacing={0}
+        sx={{
+          width: "fit-content",
+        }}
+      >
         {board.map((row, r) => (
           <Grid container item key={r} spacing={0}>
             {row.map((cell, c) => (
