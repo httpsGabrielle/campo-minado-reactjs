@@ -9,18 +9,15 @@ export default function Board() {
 
   return (
     <>
-      <Grid
-        container
-        spacing={1}
-        columns={{ xs: cols }}
-        sx={{ width: "300px" }}
-      >
-        {board.map((row, r) =>
-          row.map((cell, c) => (
-            <Cell key={`${r}-${c}`} row={r} col={c} cell={cell} />
-          )),
-        )}
-      </Grid>
+      <Stack spacing={0} sx={{ width: "fit-content" }}>
+        {board.map((row, r) => (
+          <Grid container item key={r} spacing={0}>
+            {row.map((cell, c) => (
+              <Cell key={c} row={r} col={c} cell={cell} />
+            ))}
+          </Grid>
+        ))}
+      </Stack>
     </>
   );
 }

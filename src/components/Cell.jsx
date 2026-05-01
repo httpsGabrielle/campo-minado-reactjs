@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useBoardStore } from "../store/useBoardStore";
 
 export default function Cell({ row, col, cell }) {
@@ -14,21 +14,24 @@ export default function Cell({ row, col, cell }) {
   return (
     <Grid
       item
-      size={{ xs: 1 }}
       onClick={() => openCell(row, col)}
       onContextMenu={handleRightClick}
-      sx={{
-        border: "1px solid black",
-        aspectRatio: "1/1",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: cell.isOpen ? "#ddd" : "#aaa",
-        cursor: "pointer",
-      }}
     >
-      {cell.isOpen && (cell.isMine ? "💣" : cell.neighborMines || "")}
-      {cell.isFlagged && "🚩"}
+      <Box
+        sx={{
+          minWidth: 40,
+          height: 40,
+          border: "1px solid #ccc",
+          backgroundColor: cell.isOpen ? "#ddd" : "#aaa",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {cell.isOpen && (cell.isMine ? "💣" : cell.neighborMines || "")}
+        {cell.isFlagged && "🚩"}
+      </Box>
     </Grid>
   );
 }
