@@ -1,47 +1,63 @@
-import { useBoardStore } from "../store/useBoardStore";
-
 import {
   AppBar,
   Box,
   Button,
+  IconButton,
   MenuItem,
   Select,
   Stack,
+  styled,
   Toolbar,
   Typography,
 } from "@mui/material";
 
 import logo from "../assets/logo/logo.png";
 
+import { Icon } from "@iconify/react";
+
 export default function Header() {
-  const startGame = useBoardStore((s) => s.startGame);
-  const level = useBoardStore((s) => s.level);
-  const setLevel = useBoardStore((s) => s.setLevel);
+  // Componente de botão com efeito de blur
+  const BlurIconButton = styled(IconButton)(({ theme }) => ({
+    backgroundColor: "rgba(255, 255, 255, 0.6)", // transparência
+    backdropFilter: "blur(10px)", // blur
+    WebkitBackdropFilter: "blur(10px)", // Safari
+    borderBottom: "1px solid rgba(255,255,255,0.2)",
+  }));
+
+  // Função para abrir o repositório no GitHub
+  const handleGithub = () => {
+    window.open(
+      "https://github.com/httpsGabrielle/campo-minado-reactjs",
+      "_blank",
+    );
+  };
 
   return (
-    <AppBar color="inherit" component="nav" position="fixed" elevation={1}>
+    <AppBar color="transparent" component="nav" elevation={0}>
       <Toolbar>
         <Stack
           direction="row"
           spacing={1}
           sx={{ flexGrow: 1, alignItems: "end" }}
         >
-          <Box component="img" src={logo} alt="Logo" sx={{ height: 32 }} />
-          <Typography variant="h6">Campo Minado</Typography>
+          <Box component="img" src={logo} alt="Logo" sx={{ height: "28px" }} />
         </Stack>
-        <Stack direction="row" spacing={1}>
-          <Select
-            value={level}
-            onChange={(event) => setLevel(event.target.value)}
-            size="small"
+        <Stack direction={"row"} spacing={1}>
+          <BlurIconButton>
+            <Icon
+              icon="mage:trophy-star-fill"
+              width={24}
+              height={24}
+              color="#333"
+            />
+          </BlurIconButton>
+          <BlurIconButton
+            onClick={() => {
+              handleGithub();
+            }}
           >
-            <MenuItem value="easy">Fácil</MenuItem>
-            <MenuItem value="medium">Médio</MenuItem>
-            <MenuItem value="hard">Difícil</MenuItem>
-          </Select>
-          <Button color="primary" variant="contained" onClick={startGame}>
-            Start
-          </Button>
+            <Icon icon="mdi:github" width={24} height={24} color="#333" />
+          </BlurIconButton>
         </Stack>
       </Toolbar>
     </AppBar>
