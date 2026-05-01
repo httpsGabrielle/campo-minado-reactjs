@@ -7,11 +7,18 @@ function openCell(board, row, col) {
 
   cell.isOpen = true;
 
+  // Se tiver flag, remove a flag ao abrir a célula
+  if (cell.isFlagged) {
+    cell.isFlagged = false;
+  }
+
+  // Se a célula for uma mina, o jogo termina
   if (cell.isMine) {
     alert("Game Over 💥");
     return newBoard;
   }
 
+  // Se a célula não tiver minas vizinhas, abre as células vizinhas em cascata
   if (cell.neighborMines === 0) {
     floodFill(newBoard, row, col);
   }
