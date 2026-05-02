@@ -20,8 +20,8 @@ export default function Cell({ row, col, cell }) {
     >
       <Box
         sx={{
-          minWidth: 40,
-          height: 40,
+          minWidth: { xs: 32, sm: 40 },
+          height: { xs: 32, sm: 40 },
           border: 1,
           borderColor: "white",
           backgroundColor: cell.isOpen ? "primary.lighter" : "primary.light",
