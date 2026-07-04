@@ -1,5 +1,10 @@
 # 💣 Campo Minado (Minesweeper)
 
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![MUI](https://img.shields.io/badge/MUI-9-007FFF?logo=mui&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-5-433E38?logo=react&logoColor=white)
+
 Um clone moderno do clássico jogo Campo Minado, construído com React e Material UI. Projeto desenvolvido para portfólio, com foco em lógica de jogo, gerenciamento de estado e UI responsiva.
 
 🔗 **Repositório:** [github.com/httpsGabrielle/campo-minado-reactjs](https://github.com/httpsGabrielle/campo-minado-reactjs)
