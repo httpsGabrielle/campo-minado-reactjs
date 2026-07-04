@@ -7,7 +7,6 @@
 
 Um clone moderno do clássico jogo Campo Minado, construído com React e Material UI. Projeto desenvolvido para portfólio, com foco em lógica de jogo, gerenciamento de estado e UI responsiva.
 
-🔗 **Repositório:** [github.com/httpsGabrielle/campo-minado-reactjs](https://github.com/httpsGabrielle/campo-minado-reactjs)
 
 ## ✨ Funcionalidades
 
